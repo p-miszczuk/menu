@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>custom checbox, radiobutton</title>
+	<style type="text/css">
+	body
+	{
+		display: flex;	
+	}
+	.check1
+	{
+		position: relative;
+		display: block;
+		font-size: 20px;
+		padding-left: 35px;
+		margin-bottom: 12px;
+		cursor: pointer;
+		width: 200px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+	.check1 input
+	{
+		position: absolute;
+		visibility: hidden;
+	}
+	.check2
+	{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 25px;
+		height: 25px;
+		background-color: #ddd;
+	}
+	.check1:hover .check2
+	{
+		background-color: #555;
+	}
+	.check1 input:checked ~.check2
+	{
+		background-color: blue;
+	}
+	.check1 input:checked ~.check2:after
+	{
+		display: block;
+	}
+
+	.check2:after
+	{
+		content: "";
+		position: absolute;
+		display: none;
+		top:5px;
+		left: 9px;
+		width: 5px;
+		height: 10px;
+		border: solid white;
+		border-width: 0 3px 3px 0;
+		-webkit-transform: rotate(45deg);
+		-my-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+	.b
+	{
+		width: 200px;
+	}
+	.radio1
+	{
+		position: relative;
+		display: block;
+		font-size: 20px;
+		padding-left: 35px;
+		margin-bottom: 12px;
+		width: 150px;
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+	.radio1 input
+	{
+		position: absolute;
+		visibility: hidden;
+	}
+	.radio2
+	{
+		position: absolute;
+		left: 0px;
+		right: 0px;
+		width: 23px;
+		height: 23px;
+		background-color: #eee;
+		border-radius: 50%;
+	}
+	.radio1:hover .radio2
+	{
+		background-color: #ddd;
+	}
+	.radio1 input:checked ~ .radio2
+	{
+		background-color: blue;
+	}
+	#c
+	{
+	margin-left: 20px;	
+	}
+
+
+	</style>
+
+	
+</head>
+<body>
+
+<div class="a">
+	<form id="Cform" action="#">
+	<label class="check1">Element 1
+		<input type="checkbox" value="element1">
+		<span class="check2"></span>
+	</label>
+	<label class="check1">Element 2
+		<input type="checkbox" value="element2">
+		<span class="check2"></span>
+	</label>
+	<label class="check1">Element 3
+		<input type="checkbox" value="element3">
+		<span class="check2"></span>
+	</label>
+	<label class="check1">Element 4
+		<input type="checkbox" value="element4">
+		<span class="check2"></span>
+	</label>
+	<br/>
+	<input type="button" value="Wyświetl" onclick="Cfun()">
+	</form>
+	<span>Wybrano: </span><span id="zaw"></span>
+</div>
+
+<div class="b">
+	<form id="Rform">
+	<label class="radio1">Element 1
+		<input type="radio" name="radio" value="1">
+		<span class="radio2"></span>
+	</label>
+	<label class="radio1">Element 2
+		<input type="radio" name="radio" value="2">
+		<span class="radio2"></span>
+	</label>
+	<label class="radio1">Element 3
+		<input type="radio" name="radio" value="3">
+		<span class="radio2"></span>
+	</label>
+	<input type="button" onclick="Rfun()" value="dajesz">
+	</form>
+	<br/>
+	<span>Wybrano: </span><span id="wysw"></span>
+</div>
+
+<div class="c">
+	<span id="Atext1"></span>
+	<form id="Aform" method="post" action="">
+		<label>
+			<textarea id="textarea" rows="10" cols="50"  placeholder="dodaj tekst" onfocus="this.placeholder=''" onblur="this.placeholder='dodaj tekst'" >
+			</textarea>
+		</label>
+		<input type="button" value="Dodaj" onclick="Afun()">
+	</form>
+	<br/>
+	<span>Wybrano: </span><span id="Atext"></span>
+
+</div>
+
+<script type="text/javascript">
+		
+		function Rfun(){
+			var x = document.querySelector('input[name="radio"]:checked').value;
+			document.getElementById("wysw").innerHTML=x;
+		}
+		function Cfun(){
+			var x= document.forms.Cform;
+			var txt="";
+			for (var i=0; i<x.length; i++) {
+				if(x[i].checked)
+				{
+					txt=txt+x[i].value +" ";
+				}
+			}
+			document.getElementById("zaw").innerHTML = txt;
+		}
+		function Afun(){
+			var x = document.getElementById("textarea").value;
+				if (x!="") 
+				{			
+					document.getElementById("Atext").innerHTML = x;
+				}
+				else
+				{
+					document.getElementById("Atext1").innerHTML = "wprowadz dane" ;
+				}
+		}	
+	</script>
+		
+</body>
+</html>

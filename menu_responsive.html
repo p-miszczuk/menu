@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>responsywne menu</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="jQuery.gallery.js"></script> -->
+      <!-- <link rel="stylesheet" href="fontello/css/font.css"/> -->
+    
+ 
+<style type="text/css">
+    
+*
+{
+  margin: 0;
+  padding: 0;
+  background-color: #292a38;
+}
+#menu-svg, #menu-svg-2 {
+  background: #292a38;
+  margin: 25px;
+  padding: 0;
+  width: 60px;
+  height: 35px;
+}
+svg 
+{
+  width: 50px;
+  height: 20px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 3px;
+}
+path
+{
+  z-index: 100;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s linear, stroke-dasharray 0.3s linear;
+}
+
+path#p1, path#path1,
+path#p3, path#path3
+{
+  stroke-dasharray: 25 65;
+}
+
+path#p2, path#path2
+{
+  stroke-dasharray: 25 25;
+}
+
+.anim path#p1, .anim path#path1,
+.anim path#p3, .anim path#path3
+{
+  stroke-dashoffset: -56;
+}
+
+.anim path#p2, .anim path#path2
+{
+  stroke-dashoffset: -12;
+  stroke-dasharray: 1 20;
+}
+</style>
+
+  </head>
+  <body>
+
+<div id="menu-svg">
+  <svg viewbox="0,-3,25,26">
+    <path id='p1' d="M0,0 25,0 C25,0 50,10 22,18 C22,18 22,18 3,2" />
+    <path id='p2' d="M0,10 L25,10" />
+    <path id='p3' d="M0,20 25,20 C25,20 50,10 22,2 C22,2 22,2 3,18" />
+  </svg>
+</div>
+
+<div id="menu-svg-2">
+  <svg viewbox="0,-3,25,26">
+    <path id='path1' d="M0,0 25,0 C25,0 50,10 22,18 C22,18 22,18 12.5,10 C12.5,10 12.5,10 22,2" />
+    <path id='path2' d="M0,10 L25,10" />
+    <path id='path3' d="M25,20 0,20 C0,20 -25,10 3,2 C3,2 3,2 12.5,10 C12.5,10 12.5,10 3,18" />
+  </svg>
+</div>
+
+<script type="text/javascript">
+  (function () {
+
+ $("#menu-svg").on("click", function(){
+    $("#menu-svg").toggleClass("anim");
+  });
+
+  $("#menu-svg-2").on("click", function(){
+    $(this).toggleClass("anim");
+  });
+
+}).call(this);
+
+</script>
+
+  </body>
+</html>

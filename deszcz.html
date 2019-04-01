@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>cw</title>
+    <script type="text/javascript">
+        var canvas;
+        var ctx;
+        var color = "white";
+        var obj = [];
+        var numberOfDrops = 1000;
+        var numberOfCollisons = 30;
+        var timer = 20;
+
+        function createElements(x,y,w,s)
+        {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.s = s;
+        }
+
+        function drop()
+        {
+            
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            for(i=0; i<obj.length; i++)
+            { 
+            obj[i].y+=obj[i].s;
+            
+            object(obj[i].x,obj[i].y,obj[i].w,obj[i].w*3)
+            
+            if(obj[i].y+obj[i].w*3>canvas.height)
+            {
+                splash(obj[i].x,obj[i].y+obj[i].w*3,obj[i].w);
+                obj[i].x = random(canvas.width,1);
+                obj[i].y = -random(200,1);
+                obj[i].s = random(2,0.5);
+                obj[i].w = obj[i].s.toFixed(2);
+            }
+            }
+        }
+
+        function object(x,y,w,h)
+        {
+            ctx.fillStyle = color;
+            ctx.fillRect(x,y,w,h);
+        }
+        
+        function random(a,b)
+        {
+            return (Math.random()*a)+b
+        }
+
+        function splash(x,y,w)
+        {   
+            var r=0;
+            for(j=0; j<numberOfCollisons; j++)
+            {
+                if(j%2==0)
+                {
+                    r = random(5,0.5);
+                }
+                else
+                {
+                    r = -random(5,0,5);
+                }
+                object(x+r,y-Math.abs(r),w/2,w/2)
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            canvas = document.querySelector('.can');
+            ctx = canvas.getContext('2d');
+            for(i=0; i<numberOfDrops; i++)
+            {   
+                var xx = random(canvas.width,1);
+                var yy = -random(200,1);
+                var s = random(2,0.5);
+                var w = s.toFixed(2);
+                obj.push(new createElements(xx,yy,w,s));
+                
+            }
+            setInterval(drop,timer);
+            
+        });
+
+    </script>
+    <style type="text/css">
+        canvas
+        {
+            background-color: black;        
+        }
+
+       
+
+    </style>
+</head>
+<body>
+
+    <canvas class="can" width="400" height="250">
+        Twoja przeglądarka nie wspiera wspiera Canvas!!
+    </canvas>
+    
+</body>
+</html>
